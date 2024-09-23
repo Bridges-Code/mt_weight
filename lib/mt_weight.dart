@@ -39,14 +39,16 @@ class MtWeight {
     }
   }
 
-  Stream<int> get weightStream {
+  Stream<(int, int)> get weightStream {
     /// Format:
     /// 92    350    00
     return stream.map((data) {
       final parts = data.split(RegExp(r'\s+'));
-      final negative = parts[0].trim() == '92';
+      final negative = parts[0] == String.fromCharCodes([2, 57, 50]) ||
+          parts[0] == String.fromCharCodes([2, 57, 51]);
       final weight = int.parse(parts[1]);
-      return negative ? -weight : weight;
+      final tare = int.parse(parts[2]);
+      return (negative ? -weight : weight, tare);
     });
   }
 

@@ -5,17 +5,18 @@ class MtWeightDisplay extends StatelessWidget {
       {super.key, required this.mtWeight, required this.builder});
 
   final MtWeight mtWeight;
-  final Widget Function(int weight) builder;
+  final Widget Function(int weight, int tare) builder;
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<int>(
+    return StreamBuilder<(int, int)>(
       stream: mtWeight.weightStream,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return builder(snapshot.data!);
+          final data = snapshot.data!;
+          return builder(data.$1, data.$2);
         } else {
-          return builder(0);
+          return builder(0, 0);
         }
       },
     );

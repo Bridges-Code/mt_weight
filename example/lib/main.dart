@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_fullscreen/flutter_fullscreen.dart';
 import 'package:mt_weight/mt_weight.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await FullScreen.ensureInitialized();
+  FullScreen.setFullScreen(true);
   runApp(const MainApp());
 }
 
@@ -32,11 +36,18 @@ class _MainAppState extends State<MainApp> {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    MtWeightDisplay(
+                    Expanded(
+                        child: MtWeightDisplay(
                       mtWeight: mtWeight,
-                      builder: (weight) => Text('$weight kg'),
-                    ),
-                    MtWeightActions(mtWeight: mtWeight),
+                      builder: (weight, tare) => Center(
+                        child: Text(
+                          '$weight kg ,$tare tare',
+                          style: const TextStyle(
+                              fontSize: 50, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    )),
+                    Expanded(child: MtWeightActions(mtWeight: mtWeight)),
                   ],
                 );
               } else {
