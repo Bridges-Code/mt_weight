@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 part 'widgets/mt_weight_actions.dart';
 part 'widgets/mt_weight_display.dart';
+part 'widgets/mt_weight_terminal.dart';
 
 class MtWeight {
   final String address;

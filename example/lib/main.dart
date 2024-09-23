@@ -37,7 +37,7 @@ class _MainAppState extends State<MainApp> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Expanded(
-                        child: MtWeightDisplay(
+                        child: MtWeightText(
                       mtWeight: mtWeight,
                       builder: (weight, tare) => Center(
                         child: Text(

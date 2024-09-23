@@ -1,7 +1,7 @@
 part of '../mt_weight.dart';
 
-class MtWeightDisplay extends StatelessWidget {
-  const MtWeightDisplay(
+class MtWeightText extends StatelessWidget {
+  const MtWeightText(
       {super.key, required this.mtWeight, required this.builder});
 
   final MtWeight mtWeight;
