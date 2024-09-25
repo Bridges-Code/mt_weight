@@ -18,7 +18,8 @@ class MtWeight {
 
   Future<void> connect() async {
     try {
-      socket = await Socket.connect(address, port);
+      socket = await Socket.connect(address, port,
+          timeout: const Duration(seconds: 5));
     } catch (e) {
       throw Exception('Failed to connect to $address:$port, $e');
     }
