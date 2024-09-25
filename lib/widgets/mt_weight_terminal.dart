@@ -1,11 +1,20 @@
 part of '../mt_weight.dart';
 
 class MtWeightTerminal extends StatelessWidget {
-  const MtWeightTerminal(
-      {super.key, required this.mtWeight, required this.builder});
+  const MtWeightTerminal({
+    super.key,
+    required this.mtWeight,
+    required this.builder,
+    this.mainAxisAlignment = MainAxisAlignment.spaceEvenly,
+    this.crossAxisAlignment = CrossAxisAlignment.center,
+    this.mainAxisSize = MainAxisSize.min,
+  });
 
   final MtWeight mtWeight;
   final Widget Function(int weight, int tare) builder;
+  final MainAxisAlignment mainAxisAlignment;
+  final CrossAxisAlignment crossAxisAlignment;
+  final MainAxisSize mainAxisSize;
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +27,9 @@ class MtWeightTerminal extends StatelessWidget {
 
           if (snapshot.connectionState == ConnectionState.done) {
             return Column(
+              mainAxisAlignment: mainAxisAlignment,
+              crossAxisAlignment: crossAxisAlignment,
+              mainAxisSize: mainAxisSize,
               children: [
                 if (snapshot.hasError) const Text('No Connection'),
                 MtWeightText(mtWeight: mtWeight, builder: builder),
