@@ -23,37 +23,48 @@ class _MainAppState extends State<MainApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: FutureBuilder(
-            future: mtWeight.connect(),
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return Center(
-                  child: Text('Error: ${snapshot.error}'),
-                );
-              }
-
-              if (snapshot.connectionState == ConnectionState.done) {
-                return Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Expanded(
-                        child: MtWeightText(
-                      mtWeight: mtWeight,
-                      builder: (weight, tare) => Center(
-                        child: Text(
-                          '$weight kg ,$tare tare',
-                          style: const TextStyle(
-                              fontSize: 50, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    )),
-                    Expanded(child: MtWeightActions(mtWeight: mtWeight)),
-                  ],
-                );
-              } else {
-                return const Center(child: CircularProgressIndicator());
-              }
+        body: MtWeightTerminal(
+            mtWeight: mtWeight,
+            builder: (weight, tare) {
+              return Center(
+                child: Text(
+                  '$weight kg ,$tare tare',
+                  style: const TextStyle(
+                      fontSize: 50, fontWeight: FontWeight.bold),
+                ),
+              );
             }),
+        // body: FutureBuilder(
+        //     future: mtWeight.connect(),
+        //     builder: (context, snapshot) {
+        //       if (snapshot.hasError) {
+        //         return Center(
+        //           child: Text('Error: ${snapshot.error}'),
+        //         );
+        //       }
+
+        //       if (snapshot.connectionState == ConnectionState.done) {
+        //         return Column(
+        //           mainAxisAlignment: MainAxisAlignment.center,
+        //           children: [
+        //             Expanded(
+        //                 child: MtWeightText(
+        //               mtWeight: mtWeight,
+        //               builder: (weight, tare) => Center(
+        //                 child: Text(
+        //                   '$weight kg ,$tare tare',
+        //                   style: const TextStyle(
+        //                       fontSize: 50, fontWeight: FontWeight.bold),
+        //                 ),
+        //               ),
+        //             )),
+        //             Expanded(child: MtWeightActions(mtWeight: mtWeight)),
+        //           ],
+        //         );
+        //       } else {
+        //         return const Center(child: CircularProgressIndicator());
+        //       }
+        //     }),
       ),
     );
   }

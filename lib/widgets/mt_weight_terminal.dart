@@ -12,13 +12,14 @@ class MtWeightTerminal extends StatelessWidget {
     return FutureBuilder(
         future: mtWeight.connect(),
         builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return const Text('No Connection');
-          }
+          // if (snapshot.hasError) {
+          //   return const Text('No Connection');
+          // }
 
           if (snapshot.connectionState == ConnectionState.done) {
             return Column(
               children: [
+                if (snapshot.hasError) const Text('No Connection'),
                 MtWeightText(mtWeight: mtWeight, builder: builder),
                 MtWeightActions(mtWeight: mtWeight)
               ],

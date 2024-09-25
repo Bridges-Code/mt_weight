@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 part 'widgets/mt_weight_actions.dart';
-part 'widgets/mt_weight_display.dart';
+part 'widgets/mt_weight_text.dart';
 part 'widgets/mt_weight_terminal.dart';
 
 class MtWeight {
@@ -36,7 +36,7 @@ class MtWeight {
     try {
       return socket!.cast<List<int>>().transform(ascii.decoder);
     } catch (e) {
-      throw Exception('Socket is not connected');
+      return const Stream.empty();
     }
   }
 
